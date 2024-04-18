@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type ="text/css">
+
+.marquee 
+{
+	width: 650px;
+	background-color: red;
+	color: white;
+	line-height: 50px; /*sets the height of a line box. Used to set the distance between lines of text.*/
+	white-space: nowrap;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.marquee img 
+{
+	display: inline-block;
+	padding-left: 100%;
+	animation-name: SideToSide; /* name of the keyframes */
+	animation-duration: 5s; /* Specifies the length of time in which an animation completes one cycle. */
+	animation-iteration-count: infinite; /* Specifies the number of times an animation should repeat. */
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+.marquee p 
+{
+	display: inline-block;
+	background-color: green;
+	padding-left: 100%;
+	animation-name: SideToSide; /* name of the keyframes */
+	animation-duration: 10s; /* Specifies the length of time in which an animation completes one cycle. */
+	animation-iteration-count: infinite;
+}
+marquee li 
+{
+	display: inline-block
+	background-color: blue;
+	padding-left: 100%;
+	animation-name: SideToSide; /* name of the keyframes */
+	animation-duration: 15s; /* Specifies the length of time in which an animation completes one cycle. */
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse; /* animate in reverse direction */
+}
+span 
+{
+	width: 500px;
+	height: 100px;
+	position: relative;
+	animation-name: MoveUpDown; /* name of the keyframes */
+	animation-duration: 3s; /* Specifies the length of time in which an animation completes one cycle. */
+	animation-iteration-count: infinite; /* Specifies the number of times an animation should repeat. */
+	animation-direction: alternate; /* indicates if an animation's first iteration should be forward or backward and whether subsequent
+	iterations should alternate direction */
+}
+span p 
+{
+	background-color: red;
+	color: white;
+	font-size: 150%;
+	width: 650px;
+}
+
+@keyframes SideToSide {
+	0% { transform: translate(0, 0); }
+	100% { transform: translate(-100%, 0); }
+}
+
+@keyframes MoveUpDown {
+	0% {top: 0px;}
+	100% {top: 100px;}
+}
+
+</style>
+</head>
+<body>
+
+	<h1>Creating a Marquee using CSS</h1>
+	
+	<div class="marquee">
+		<img src="images/image2.jpg" height="200">
+	</div>
+
+	<div class="marquee">
+		<p> Is this an owl? </p>
+	</div>
+
+	<div class="marquee">
+		<li> Or is it a cat? </li>
+	</div>
+
+	<span>
+		<p> move up and down! </p>
+	</span>
+
+</body>
+</html>

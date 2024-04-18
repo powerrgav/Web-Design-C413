@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<!--
+Gavin Power
+Web Programming
+Lab 5a (JavaScript Classes, Objects)
+Spring 2024-->
+
+<html>
+
+<head>
+	<title>JavaScript Classes, Objects</title>
+	<meta charset="UTF-8" 
+		  name = "keywords" content="Using JavaScript, Classes, Objects, Web Programming">
+		  
+<script type="text/javascript">
+
+function tryIt()
+{
+	document.writeln(" 1) Creating a Car Object in JavaScript<br>");
+	let myCar = new car("Honda", "Accord", 2007, "White");
+	
+	document.writeln(" 2) calling myCar.display() <br>");
+	myCar.display();
+
+	document.writeln(" 3) calling mycolor.setColor, then myCar.displayColor() <br>");
+	myCar.setColor("Blue");
+	myCar.displayColor();
+	
+	document.writeln("<hr>");
+	document.writeln(" 4) Creating a SuperCar Object (inherited from car)<br>");
+	let mySuperCar = new supercar("Honda", "Accord", 2007, "White", "Can Fly");
+
+	document.writeln(" 5) Testing Overriding in JavaScript (Within Inherited classes) <br>");
+	document.writeln(" 5.1) calling the Overriding mySuperCar.display() <br>");
+	mySuperCar.display();
+
+	document.writeln(" 6) calling the mySuperCar.getYear() <br>");
+	year = mySuperCar.getYear();
+	document.writeln("<ul><li>Year: " + year + "</li></ul>");
+
+
+	document.writeln(" 7) calling the mySuperCar.getYear() <br>");
+	age = mySuperCar.getAge();
+	document.writeln("<ul><li>Age: " + age + "</li></ul>");
+}
+
+class car {
+		constructor(make, model, year, color)
+		{
+			document.writeln("<ul>");
+			document.writeln("A new Car is created...");
+			document.writeln("</ul>");
+			this.make = make;
+			this.model = model;
+			this.year = year;
+			this.color = color;
+		}
+
+	display()
+	{
+		document.writeln("<ul>");
+		document.writeln("Car Information:");
+		document.writeln("<li>" + this.make + "</li>");
+		document.writeln("<li>" + this.model + "</li>");
+		document.writeln("<li>" + this.year + "</li>");
+		document.writeln("<li>" + this.color + "</li>");
+		document.writeln("</ul>");
+	}
+	displayColor()
+	{
+		document.writeln("<ul>");
+		document.writeln("<li> the Color is: " + this.color + "</li>");
+		document.writeln("</ul>");
+	}
+
+	setColor(newColor)
+	{
+		this.color = newColor;
+	}
+
+	getYear()
+	{
+		return(this.year);
+	}
+
+	getAge()
+	{
+		const date = new Date();
+		return(date.getFullYear() - this.year);
+	}
+}	
+
+class supercar extends car {
+		constructor(make, model, year, color, superAttribute)
+		{
+			document.writeln("<ul>");
+			document.writeln("A new SuperCar is created...");
+			document.writeln("</ul>");
+
+			super(make, model, year, color); // call constructor for the parent class to set the parameters of the regular car!
+			this.superAttribute = superAttribute; // set the parameter of a supercar.
+
+		}
+
+		//Overriding in JavaScript Inherited classes
+		//------------------------------------------
+		//override the display() method of the parent class
+		display()
+		{
+			//document.writeln("Car Information:");
+			//document.writeln("<li>" + this.make + "</li>");
+			//document.writeln("<li>" + this.model + "</li>");
+			//document.writeln("<li>" + this.year + "</li>");
+			//document.writeln("<li>" + this.color + "</li>");
+
+			// or
+
+			super.display();
+			document.writeln("<ul>");
+			document.writeln("<li><b>" + this.superAttribute + "</b></li>");
+			document.writeln("</ul>");
+		}
+}
+</script>
+</head>
+
+<body>
+
+<button onclick="tryIt()">Click here to create a couple of Objects </button>
+
+</body>
+</html>

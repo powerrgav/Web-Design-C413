@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<!--
+Gavin Power
+Web Programming
+Lab 8 (JavaScript, HTML 5 Canvas, DOM manipulation, Event handling)
+Spring 2024-->
+
+<html>
+<head>
+
+<title>HTML5, Canvas Graphics, JavaScript</title>
+<meta charset="UTF-8" 
+		  name = "keywords" content="JavaScript, Web Programming, Canvas Graphics, Event Handling">
+
+<script type="text/javascript">
+
+function displayRectangle(x,y, width, height, theColor, theCanvas, theShadow)
+{
+	var myCanvas = document.getElementById(theCanvas);
+	var ctx = myCanvas.getContext("2d");
+	ctx.fillStyle = theColor;
+	if (theShadow == true)
+	{
+		ctx.shadowBlur=10;
+		ctx.shadowOffsetX = 10;
+		ctx.shadowOffsetY = 10;
+		ctx.shadowColor = 'black';
+	}
+	else
+	{
+		ctx.shadowBlur=0;
+		ctx.shadowOffsetX = 0;
+		ctx.shadowOffsetY = 0;
+	}
+	ctx.fillRect(x,y, width, height);
+}
+
+
+//------------------------------------------------------------------------------------------------
+function displayCircle(centerX,centerY, radius, theColor, theCanvas)
+{
+	var myCanvas = document.getElementById(theCanvas);
+	var ctx = myCanvas.getContext("2d");
+	ctx.fillStyle = theColor;
+	ctx.beginPath(); // Start a new starting point for a path (drawing)
+	ctx.arc(centerX, centerY,radius, 0, 2*Math.PI);
+	ctx.stroke(); // make the path visible (draw it) on the canvas
+	//ctx.fill(); // commented out to prevent fill
+}
+//------------------------------------------------------------------------------------------------
+function displayArc(centerX,centerY, radius, startAngle, endAngle, direction, theColor, theCanvas)
+{
+	var myCanvas = document.getElementById(theCanvas);
+	var ctx = myCanvas.getContext("2d");
+	ctx.fillStyle = theColor;
+	ctx.beginPath();
+	ctx.arc(centerX, centerY,radius,startAngle,endAngle);
+	ctx.stroke();
+	ctx.fill();
+}
+
+function displayPieChart(theTitle, centerX, centerY, radius, myData, myLabel, theColors, theCanvas)
+{
+	//calculate total amount of data
+	
+	var totalData=0;
+	for(var i =0; i<myData.length;i++){
+		totalData+= myData[i];
+	}
+	
+	//note to use radians and not degrees
+	
+	var slices = Array();
+	for(var i=0; i<myData.length;i++){
+		slices[i]=myData[i]/totalData*2*Math.PI;
+	}
+	
+	//calculate and store slices as percentages
+	//multiply by 100 to not get number as a decimal
+	var percentages = Array();
+	for(var i=0; i<slices.length;i++){
+		percentages[i] = slices[i]/totalData*100;
+	}
+	
+	//----------------------------------------------------------
+	// Setup the canvas and the context
+	//----------------------------------------------------------
+	var myCanvas = document.getElementById(theCanvas);
+	var ctx = myCanvas.getContext("2d");
+	ctx.color = 'blue';
+	ctx.lineWidth = 1;
+
+
+	//----------------------------------------------------------
+	// Display the Chart Title
+	//----------------------------------------------------------
+	ctx.font ='20px Arial';
+	// Calculate the Center of the canvas and position the title properly
+	var titleX = (myCanvas.width / 2) - (ctx.measureText(theTitle).width / 2);
+	ctx.fillText(theTitle, titleX, 30);
+
+	//----------------------------------------------------------
+	// Display the Pie Chart
+	//----------------------------------------------------------
+	
+	var startAngle = 0;
+	for (var i =0; i < slices.length; i++)
+	{
+		endAngle = startAngle + slices[i];
+		ctx.fillStyle = theColors[i];
+		ctx.beginPath();
+		// Finally, draw the bounding lines that creates each pie in the pie chart
+		ctx.moveTo(centerX, centerY); // go to center
+		ctx.arc(centerX, centerY,radius,startAngle,endAngle, false); // draw arc
+		ctx.lineTo(centerX, centerY); // back to center
+		ctx.stroke();
+		ctx.fill();
+		startAngle = endAngle;
+	}
+
+	//----------------------------------------------------------
+	// Display the Legend
+	for (var i =0; i < slices.length; i++)
+	{
+		ctx.fillStyle = theColors[i];
+		var x = centerX + radius * 1.4 ;
+		var y = centerY - radius + i * 40;
+		var width = 20;
+		var height = 20;
+		ctx.fillRect(x,y, width, height);
+		ctx.font ='20px Arial';
+		ctx.fillText(percentages[i].toFixed(2) +"% " +
+										  myLabel[i] +
+										  " (" + myData[i] + ")" ,
+											x+30, y+20);
+	}
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+	<canvas id="myCanvas1"
+		width="600"
+		height="350"
+		style="border:6px solid #FFd333; background:#FFFFFF">
+		Your browser does not support the HTML5 canvas tag. (Try Chrome, FireFox, or Safari.)
+	</canvas>
+	
+	<button onclick="displayRectangle(40,20,150,300, '#AAAA00', 'myCanvas1', true);" >
+		Display Rectangle
+	</button>
+	
+	<button onclick="displayRectangle(20,40,350,100, '#AACC00', 'myCanvas1', false);" >
+		Display Rectangle
+	</button>
+
+	<button onclick="displayCircle(300, 200, 50, '#AACC00', 'myCanvas1');" > Display Circle </button>
+	
+	<button onclick="displayArc(400, 250, 50, 0*Math.PI, 1*Math.PI, 'clockwise', '#AACC00', 'myCanvas1');" >
+		DisplayArc 1</button>
+
+	<button onclick="displayArc(400, 250, 50,1*Math.PI, 2*Math.PI, 'clockwise', '#AA3300', 'myCanvas1');" > 
+		Display	Arc 2 </button>
+		
+		
+<script>
+	var myData = [400, 200, 100]; // create an array to hold the data
+	var myLabels = new Array('Risk','No Risk', 'Others'); // create an array for the labels
+	var myColors = new Array('red', 'green', 'blue'); // array for the colors
+</script>
+
+	<button onclick="displayPieChart('The Chart Title', 150, 200, 100, myData, myLabels, myColors, 'myCanvas2');" >
+		Display Pie Chart </button>
+
+</body>
+</html>

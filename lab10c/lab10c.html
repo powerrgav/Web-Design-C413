@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<!--
+Gavin Power
+Web Programming
+Lab: 10c (Understanding CSS Box Model)
+Spring 2024
+-->
+
+<html>
+<head>
+
+<style type="text/css">
+body{
+	background-color:darkgray;
+} 
+/* Set the default for every DIV */
+div {
+	background-color:yellow;
+} 
+/* default paddings, borders, margins */
+#div1 {
+	/* no CSS rules */
+} 
+/* Different paddings, borders, margins */
+#div2 {
+	padding: 50px 10px 50px 10px; /* set the padding (top, right, bottom, left) */
+
+	border-width: 10px 20px 40px 80px; /* set the margin (top, right, bottom, left) */
+	border-style: solid;
+	border-color: Red;
+	margin: 40px 20px 10px 20px; /* set the margins (top, right, bottom, left) */
+}
+/* Equal paddings, borders, margins */
+#div3 {
+	padding: 50px 50px 50px 50px; /* set the padding (top, right, bottom, left) */
+
+	border-width: 10px 10px 10px 10px; /* set the margin (top, right, bottom, left) */
+	border-style: solid;
+	border-color: Red;
+	margin: 20px 20px 20px 20px; /* set the margins (top, right, bottom, left) */
+}
+</style>
+
+</head>
+<body>
+
+	<H1> The Box Model in CSS </H1>
+	<p> The Box Model in CSS describes how a block elements in HTML are wrapped by a set of imaginary boxes. For example, a DIV element has the
+following parts associated with it:</p>
+
+	<ul>
+		<li> The Content of the div</li>
+		<li> Some Padding (top,right, bottom, left) </li>
+		<li> A Borders (top,right, bottom, left) </li>
+		<li> A Margin (top,right, bottom, left) </li>
+	</ul>
+
+	<p>The challenging part of understanding the BOX model may be due to the fact that these imaginary boxes also interact with each other as well as the
+browser dimensions. </p>
+
+	<H3> Let's see an examples: </H3>
+	<ul>In the examples below, we have three imaginary boxes around each DIV.
+		<li>Yellow holds the DIV Content and its Padding,</li>
+		<li>Red is the Border, and </li>
+		<li>the Gray area (before and after the HR tag) represent the Margins.</li>
+	</ul>
+	
+	<hr />
+	
+	<div id="div1">
+		<h3>Content of DIV 1:</h3>
+		<ul>
+			DIV with default div properties (no CSS rules)
+		</ul>
+	</div>
+
+	<hr />
+	<div id="div2">
+		<h3>Content of DIV 2:</h3>
+		<ul>
+			<li>padding:50px 10px 50px 10px; </li> /* notice the yellow padding starts with Top and bottom of 50,
+compared to left and right which are 10 (top, right, bottom, left) */
+
+			<li>border-width: 10px 20px 40px 80px; </li> /* notice the red border starts with top=10, and doubles as we rotate
+around. (top, right, bottom, left) */
+			<li>border-style: solid; </li>
+			<li>border-color: Red; </li>
+			<li>margin: 40px 20px 10px 20px; </li> /* notice the gray margins left and right are 20, and top is 4 times bigger
+than bottom.(top, right, bottom, left) */
+		</ul>
+	</div>
+
+	<hr />
+	<div id="div3">
+		<h3>Content of DIV 3:</h3>
+		<ul>
+			<li>padding:50px 50px 50px 50px; </li> /* notice the yellow paddings are all 50 (top, right, bottom, left) */
+
+			<li>border-width: 10px 10px 10px 10px; </li> /* notice the red borders are all 10. (top, right, bottom, left) */
+			<li>border-style: solid; </li>
+			<li>border-color: Red; </li>
+			<li>margin: 20px 20px 10px 20px; </li> /* notice the gray margins are all 20.(top, right, bottom, left) */
+		</ul>
+	</div>
+	<hr />
+
+</body>
+</html>

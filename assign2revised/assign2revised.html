@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<!--
+Gavin Power
+Web Programming
+Assignment 2
+Spring 2024-->
+
+
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+	
+		<script type="text/javascript">
+		<!--function to display a clicked image and the file name in the right content div-->
+		function showBigImage(imagefile)
+		{
+		var mainImage = document.getElementById("MainImage");
+		
+		mainImage.innerHTML=	"<br/>"+
+								"<img src='" + imagefile + "'" +
+								"width = '340' height = '280'>" +
+								"<br/><b>" + imagefile + "</b>";
+		}
+		
+	<!--Write a function to display the thumbnails in the left content div-->
+		function showThumbnail() {
+		var myFiles = document.getElementById("files");
+		var style = "style='padding:1px;'";
+		var fileName;
+		var eventHandler;
+		var imageTags = "";
+
+		for(var i=0; i < myFiles.files.length; i++){
+			fileName = myFiles.files[i].name;
+			eventHandler = " onclick=\"showBigImage('" + fileName + "');\" ";
+			
+			imageTags += "<img " + style +
+						 "src='" + fileName +
+						 "'" + "alt='" + fileName + 
+						 "'" + "title='" + fileName + 
+						 "'" + eventHandler + 
+						 " height='60' width = '60'>";
+		}
+		
+		document.getElementById("contentLeft").innerHTML = imageTags;
+
+		}
+
+	</script>
+	
+</head>
+
+<body>
+	
+	<!--the div contianing the whole page-->
+	<div id="container" style="width:1000px">
+		
+		<!--the div with the top black bar-->
+			<div id="topBlack"
+				style="background-color:#000000;
+				float:left;
+				width:100%;
+				height:10px;">	
+			</div>
+
+		<!--header region below top black bar-->
+		<header id="header"
+			style="background-color:#F8C604;			
+			float:left;
+			width:100%;
+			height:20%;">
+			
+			<h1 style="text-align:center;">PictureView®</h1>
+		</header>
+		
+		<!--the div with the bottom black bar-->
+			<div id="bottomBlack"
+				style="background-color:#000000;
+				float:left;
+				width:100%;
+				height:10px;">	
+			</div>
+			
+		<!--Div with left side of content-->
+			<div id="contentLeft"
+				 style="background-color:#90B9A7;
+				 float:left;
+				 width:35%;
+				 height:400px;">
+				 
+				 <input id="files" type="file" name="files[]" onchange="showThumbnail();"multiple />
+				 <br />
+				 
+			</div>
+			
+		<!--Div with right side of content-->
+			<div id="contentRight"
+				 style="background-color:#CA9BEE;
+				 float:left;
+				 width:65%;
+				 height:400px;">
+				 
+				 <div id="MainImage" style = "margin-left:auto; margin-right: auto; text-align: center;">
+				 </div>
+			</div>
+			
+		<!--Footer region-->
+			<footer id="footer"
+				style="background-color:#000000;
+				float:left;
+				width:100%;
+				height:50px;">
+				<h2 style="color:white; text-align:center;">© Copyright 2023 by Web Design and Development</h2>
+			</footer>
+		
+	</div>
+</body>
+
+</html>

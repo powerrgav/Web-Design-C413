@@ -1,0 +1,50 @@
+#topBlack
+{
+	background-color:#5E7180;
+	float:left;
+	width:100%;
+	height:5px;
+}
+#header
+{
+	background-color:#7A6084;	
+	font-style:"Times New Roman", serif;
+	float:left;
+	width:100%;
+	height:10%;
+}
+#middleBlack
+{
+	background-color:#5E7180;
+	float:left;
+	width:100%;
+	height:5px;
+}
+#bottomBlack
+{
+	background-color:#5E7180;
+	float:left;
+	width:100%;
+	height:5px;
+}
+#thumbnails
+{
+	background-color:#C6C68E;
+	float:left;
+	width:550px;
+	height:400px;
+}
+#contentRight
+{
+	background-color:#C6C68E;
+	float:left;
+	width:350px;
+	height:400px;
+}
+#footer
+{
+	background-color:#5E7180;
+	float:left;
+	width:100%;
+	height:50px;
+}

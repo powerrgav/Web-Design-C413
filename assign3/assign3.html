@@ -1,0 +1,166 @@
+<html>
+<head>
+
+<!--Gavin Power
+Web Programming
+Assignment 3
+Spring 2024-->
+
+
+<meta charset="UTF-8">
+
+<style type="text/css">
+#contentRight
+{
+	transition:all 2s; /* 2 second transition */
+	-moz-transition:all 2s; /* Firefox 4 */
+	-webkit-transition:all 2s; /* Safari and Chrome */
+	-o-transition:all 2s; /* Opera */
+}
+#contentRight:hover
+{
+	-moz-transform:rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform:rotate(90deg);
+	transform:rotate(90deg);
+}
+#MainImage
+{
+	transition:all 2s; /* 2 second transition */
+	-moz-transition:all 2s; /* Firefox 4 */
+	-webkit-transition:all 2s; /* Safari and Chrome */
+	-o-transition:all 2s; /* Opera */
+}
+#MainImage:hover
+{
+	-moz-transform:translateX(-10px) translateY(40px) rotate(-90deg);
+	-webkit-transform:translateX(-10px) translateY(40px) rotate(-90deg);
+	-o-transform:translateX(-10px) translateY(40px) rotate(-90deg);
+	transform:translateX(-10px) translateY(40px) rotate(-90deg);
+}
+button
+{
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  border:none;
+  color: white;
+  font-size: 12px;
+  transition: all 0.5s;
+  border-radius: 0;
+  margin-left:150px;
+  margin-top:15px;
+}
+button:hover
+{
+	border-radius:50%;
+}
+</style>
+
+<!--link our 3 style sheets-->
+<div>
+	<link id="style1Sheet" rel="stylesheet" type="text/css" href="css/style1.css">
+	<link id="style2Sheet" rel="stylesheet" type="text/css" href="css/style2.css">
+	<link id="style3Sheet" rel="stylesheet" type="text/css" href="css/style3.css">
+</div>
+
+	<script type="text/javascript">
+		<!--function to display a clicked image and the file name in the right content div-->
+		function showBigImage(imagefile)
+		{
+		var mainImage = document.getElementById("MainImage");
+		
+		mainImage.innerHTML=	"<br/>"+
+								"<img src='" + imagefile + "'" +
+								"width = '340' height = '280'>" +
+								"<br/><center><b>" + imagefile + "</center></b>";
+		}
+		
+	<!--Write a function to display the thumbnails in the left content div-->
+		function showThumbnail() {
+		var myFiles = document.getElementById("files");
+		var style = "style='padding:1px;'";
+		var fileName;
+		var eventHandler;
+		var imageTags = "";
+
+		for(var i=0; i < myFiles.files.length; i++){
+			fileName = myFiles.files[i].name;
+			eventHandler = " onmouseover=\"showBigImage('" + fileName + "');\" ";
+			
+			imageTags += "<img " + style +
+						 "src='" + fileName +
+						 "'" + "alt='" + fileName + 
+						 "'" + "title='" + fileName + 
+						 "'" + eventHandler + 
+						 " height='90' width = '80'>";
+		}
+		
+		document.getElementById("thumbnails").innerHTML = imageTags;
+		}
+		
+		function changeStyleSheet(sheet)
+		{
+			document.getElementById("style1Sheet").setAttribute('href', sheet)
+		}
+
+	</script>
+</head>
+<body 	onload="changeStyleSheet('style1.css')">
+
+<!--page container div-->
+<div id = "container" style="width:900px">
+	
+	<!--the div with the top black bar-->
+	<div id="topBlack" style="background-color:#000000;
+	float:left;
+	width:100%;
+	height:5px;">	
+	</div>
+	
+	<!--header region below top black bar-->
+	<header id="header">
+		
+		<h1 style="text-align:center;">PhotoGallery 1.0®</h1>
+	</header>
+	
+	<!--the div with the middle black bar-->
+	<div id="middleBlack"">	
+	</div>
+	
+	<!--region with buttons-->
+	<div id="buttonsDiv">
+		
+		<input id="files" type="file" name="files[]" onchange="showThumbnail();"multiple />
+		 
+		<button id="style1Button" onclick="changeStyleSheet('style1.css')">Style 1</button>
+		<button id="style2Button" style="margin-left:15px;"onclick="changeStyleSheet('style2.css')">Style 2</button>
+		<button id="style3Button" style="margin-left:15px;" onclick="changeStyleSheet('style3.css')">Style 3</button>
+		
+	</div>
+	
+	<!--the div with the bottom black bar-->
+	<div id="bottomBlack">	
+	</div>
+	
+	<!--the div with the thumbnails-->
+	<div id = "thumbnails"">
+		
+	</div>
+	
+	<!--Div with right side of content-->
+	<div id="contentRight">
+		 
+		 <div id="MainImage" style = "margin-left:auto; margin-right: auto; text-align: center;">
+		 </div>
+	</div>
+	
+	<!--footer-->
+	<footer id="footer">
+		<h2 style="color:white; text-align:center;">©Copyright 2023 by Gavin Power - Web Programming</h2>
+	</footer>
+</div>
+
+
+</body>
+</html>

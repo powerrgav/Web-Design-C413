@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<!--
+Gavin Power
+Web Programming
+Lab 6 (JavaScript, input tag, event handling, DOM manipulation)
+Spring 2024-->
+
+
+<html>
+
+<head>
+
+<title>JavaScript Arrays, input tag, event handling</title>
+<meta charset="UTF-8" 
+		  name = "keywords" content="JavaScript, Web Programming, DOM Manipulation, Event Handling">
+
+<script type="text/javascript">
+	
+	function showDirectory()
+	{
+		var myFiles = document.getElementById("theFiles");
+		
+		for (var i=0; i < myFiles.files.length; i++)
+		{
+			document.write("<b>File Name: </b>" + myFiles.files[i].name +" <br />");
+			document.write("<b>Type: </b>" + myFiles.files[i].type +" <br />");
+			document.write("<b>Size: </b>" + myFiles.files[i].size +" <br />");
+			document.write("<p>");
+		} 
+	}
+	
+</script>
+</head>
+
+<body>
+
+	<h1 style="text-align:center"> Gavin Power</h1>
+	<p>In this lab, I have learned how to use the input tag to input files and how to use the event
+	handler in JavaScript and HTML. On this page, the user is asked to select files from their
+	machine's file directory, and then press a button that will display information about the file
+	like its name, type, and size.</p>
+
+	<input id="theFiles" type="file" name="files[]" multiple />
+	
+	<br />
+	<button onclick="showDirectory();"> Show files in the directory </button>
+	<br />
+	
+</body>
+</html>
